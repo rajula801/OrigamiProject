@@ -20,6 +20,6 @@ public String getName(@PathVariable("message") String m) {
 @RequestMapping("/name/{name}")
 public String displayName(@PathVariable("name") String m) {
 	
-	return "Welcome :"+ m;
+	return "Hello Welcome to :"+ m;
 }
 }
