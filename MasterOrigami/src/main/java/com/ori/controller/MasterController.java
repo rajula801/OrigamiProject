@@ -17,4 +17,9 @@ public String getName(@PathVariable("message") String m) {
 	
 	return "your Message is :"+ m;
 }
+@RequestMapping("/name/{name}")
+public String displayName(@PathVariable("name") String m) {
+	
+	return "Welcome :"+ m;
+}
 }
