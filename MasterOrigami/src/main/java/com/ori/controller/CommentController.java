@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ori.exception.ResourceNotFoundException;
 import com.ori.model.Comment;
+import com.ori.model.Post;
 import com.ori.repository.CommentRepository;
 import com.ori.repository.PostRepository;
 
@@ -37,11 +38,12 @@ public class CommentController {
     @PostMapping("/posts/{postId}/comments")
     public Comment createComment(@PathVariable (value = "postId") Long postId,
                                  @Valid @RequestBody Comment comment) {
-        return postRepository.findById(postId).map(post -> {
-            comment.setPost(post);
-            return commentRepository.save(comment);
-        }).orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
-    }
+    	   return postRepository.findById(postId).map(post->{
+    		   comment.setPost(post);
+           return commentRepository.save(comment);
+           }).orElseThrow(()->new ResourceNotFoundException("postId "+postId +" not found"));
+    	
+   }
 
     @PutMapping("/posts/{postId}/comments/{commentId}")
     public Comment updateComment(@PathVariable (value = "postId") Long postId,
