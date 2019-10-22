@@ -2,8 +2,11 @@ package com.ori.controller;
 
 import java.util.Calendar;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ori.model.Gender;
@@ -16,6 +19,13 @@ public class JpaOneToOneController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@PostMapping("/user")
+    public User createUser(@Valid @RequestBody User user) {
+        // This is important to synchronize both sides of the relationship
+        user.getUserProfile().setUser(user);
+        return userRepository.save(user);
+    }
 	
 	@PostMapping("/saveuser")
 	public String save(){
@@ -47,6 +57,8 @@ public class JpaOneToOneController {
 		return "Success";
 		
 	}
+	
+	
 	
 
 }

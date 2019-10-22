@@ -10,43 +10,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ori.exception.StudentNotFoundException;
 import com.ori.model.Student;
-import com.ori.repository.StudentRepository;
+import com.ori.service.StudentService;
 
 @RestController
 @RequestMapping("students")
 public class StudentController {
 	
 	@Autowired
-	private StudentRepository repository;
+	private StudentService service;
 	
 	@GetMapping
 	public Iterable<Student> getStudents() {
-	    return repository.findAll();
+	    return service.getAllStudents();
 	} 
 	
 	@GetMapping("{id}")
 	public Student getStudent(@PathVariable Long id) {
-	    return repository.findById(id).orElseThrow(StudentNotFoundException::new);
+	    return service.getStudentByID(id);
 	} 
 	@PostMapping
 	public Student addStudent(@RequestBody Student student) {
-	    return repository.save(student);
+	    return service.addStudent(student);
 	} 
 	@PutMapping("{id}")
 	public Student updateStudent(@PathVariable Long id, @RequestBody Student student) {
-	    Student studentToUpdate = repository.findById(id).orElseThrow(StudentNotFoundException::new);
+	    Student studentToUpdate = service.getStudentByID(id);
 	 
 	        studentToUpdate.setFirstName(student.getFirstName());
 	        studentToUpdate.setLastName(student.getLastName());
 	        studentToUpdate.setYear(student.getYear());
 	 
-	    return repository.save(studentToUpdate);
+	    return service.addStudent(studentToUpdate);
 	}   
 	@DeleteMapping("/{id}")
 	public void deleteStudent(@PathVariable Long id) {
-	    repository.findById(id).orElseThrow(StudentNotFoundException::new);
-	    repository.deleteById(id);
+		service.getStudentByID(id);
+	    service.deleteStudent(id);
 	}
 }
