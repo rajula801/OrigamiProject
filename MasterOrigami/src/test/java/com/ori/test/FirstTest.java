@@ -13,6 +13,7 @@ import com.ori.model.Person;
 
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class FirstTest{
 
 @Test
@@ -28,7 +29,6 @@ public void testPost_Header_success() throws URISyntaxException
     HttpHeaders headers = new HttpHeaders();
     headers.set("X-COM-PERSIST", "true");   
     headers.set("X-COM-LOCATION", "USA");     
-    System.out.println("-----------------------rajula");
     HttpEntity<Person> request = new HttpEntity<>(person, headers);
     ResponseEntity<Person> result = restTemplate.postForEntity(uri, request, Person.class);
     
