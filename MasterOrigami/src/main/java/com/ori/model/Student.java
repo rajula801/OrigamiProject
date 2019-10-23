@@ -2,10 +2,12 @@ package com.ori.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -19,9 +21,12 @@ public class Student implements Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
   	private Long id;
-     
+    
+	@NotNull
+	@Column(name="first_name")
     private String firstName;
-     
+    
+	@Column(name="last_name")
     private String lastName;
      
     private String year;
