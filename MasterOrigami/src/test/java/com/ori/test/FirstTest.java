@@ -16,7 +16,7 @@ import junit.framework.Assert;
 public class FirstTest{
 
 @Test
-public void testAddEmployeeWithoutHeader_success() throws URISyntaxException
+public void testPost_Header_success() throws URISyntaxException
 {
     RestTemplate restTemplate = new RestTemplate();
      
