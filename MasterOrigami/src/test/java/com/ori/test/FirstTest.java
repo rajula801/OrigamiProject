@@ -9,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.ori.model.Employee;
 import com.ori.model.Person;
 
 import junit.framework.Assert;
