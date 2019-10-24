@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import com.ori.model.EmployeeAddresses;
 import com.ori.model.Person;
 
 import junit.framework.Assert;
@@ -35,5 +36,15 @@ public void testPost_Header_success() throws URISyntaxException
     //System.out.println(result.getBody().getEmail());
  
     Assert.assertEquals(200, result.getStatusCodeValue());
+}
+
+@Test
+public void testAsyn_Success() {
+	
+	RestTemplate restTemplate = new RestTemplate();
+	EmployeeAddresses employeeAddressData = restTemplate.getForObject("http://localhost:8091/addresses", EmployeeAddresses.class);
+
+	System.out.println("employeeAddressData, {}"+ employeeAddressData);
+	
 }
 }

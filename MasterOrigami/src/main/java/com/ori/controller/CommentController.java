@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ori.exception.ResourceNotFoundException;
 import com.ori.model.Comment;
-import com.ori.model.Post;
 import com.ori.repository.CommentRepository;
 import com.ori.repository.PostRepository;
 
